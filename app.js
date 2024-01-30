@@ -2,6 +2,13 @@
 const yourChoiceDiv = document.getElementById('your-choice')
 const pcChoiceDiv = document.getElementById('pc-choice')
 const selectionArticle = document.querySelector('.selection')
+const messagePar = document.querySelector('.message')
+//&Score
+const scoreCardSection = document.querySelector('.score-card')
+const yourScoreSpan = document.getElementById('your-score')
+const pcScoreSpan = document.getElementById('pc-score')
+const domTopScore = document.getElementById('top-score')
+
 
 //& Değişkenler
 
@@ -10,6 +17,10 @@ let pcRandom;
 let pcArr = [];
 const userSelectImg = document.createElement('img');
 const pcSelectImg = document.createElement('img');
+//& Colors
+const YELLOW = "#ffc538";
+const RED = "#fb778b";
+const GREEN = "#5ab7ac";
 
 // console.log(selectionArticle)
 
@@ -46,6 +57,38 @@ const createPcSelection = () => {
 const calculateResult = () => {
     if (userSelection == pcRandom) {
         draw()
+    } else {
+        if (userSelection == 'rock') {
+            pcRandom == 'paper' ? youLost(userSelection) : youWin()
+        } else if (userSelection == 'paper') {
+            pcRandom == 'scissor' ? youLost(userSelection) : youWin()
+        } else if (userSelection == 'scissor') {
+            pcRandom == 'rock' ? youLost(userSelection) : youWin()
+        }
+
     }
+
+}
+
+const draw = () => {
+    messagePar.textContent = "It's a draw"
+    messagePar.style.backgroundColor = YELLOW
+    scoreCardSection.style.color = YELLOW
+}
+
+const youLost = (userSelection) => {
+    messagePar.textContent = "Wrong Choice,😓 You Lost"
+    messagePar.style.backgroundColor = RED
+    scoreCardSection.style.color = RED
+    pcScoreSpan.textContent++
+    document.getElementById('you').setAttribute('src', './img/rockl.png')
+
+}
+const youWin = (userSelection) => {
+    messagePar.textContent = "Wrong Choice,😓 You Lost"
+    messagePar.style.backgroundColor = RED
+    scoreCardSection.style.color = RED
+    pcScoreSpan.textContent++
+    document.getElementById('you').setAttribute('src', './img/rockl.png')
 
 }
